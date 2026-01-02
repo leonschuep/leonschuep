@@ -198,6 +198,16 @@
     display: block;
   }
 
+/* Para-EM Text Styling */
+.hidden-text .blog-link a {
+  font-style: italic;
+  text-decoration: none;   /* entfernt Unterstreichung */
+  color: #222;             /* ruhig, seriös */
+}
+
+.hidden-text .blog-link a:hover {
+color: #2238b2;          /* dezenter Hover-Effekt */
+}
 
 
   .sponsoring-layout {
