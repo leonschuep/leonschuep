@@ -37,8 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ---- INITIAL STATE ----
+if (slides.length > 0) {
   showSlide(0);
   startSlideshow();
+}
+
 
   // ---- EXPAND / COLLAPSE ----
 document.querySelectorAll('.expandable .click-area').forEach(item => {
@@ -73,17 +76,41 @@ document.querySelectorAll('.expandable .click-area').forEach(item => {
 const prevBtn = document.querySelector(".slideshow .prev");
 const nextBtn = document.querySelector(".slideshow .next");
 
-prevBtn.addEventListener("click", () => {
-  stopSlideshow(); // optional: Autoplay stoppen
-  current = (current - 1 + slides.length) % slides.length;
-  showSlide(current);
-});
+if (prevBtn && nextBtn) {
 
-nextBtn.addEventListener("click", () => {
-  stopSlideshow(); // optional: Autoplay stoppen
-  current = (current + 1) % slides.length;
-  showSlide(current);
-});
+  prevBtn.addEventListener("click", () => {
+    stopSlideshow();
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    stopSlideshow();
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  });
+
+}
+
+
+// ---- BURGER MENU ----
+const burger = document.getElementById("burger");
+const mobileMenu = document.getElementById("mobileMenu");
+
+if (burger && mobileMenu) {
+
+  burger.addEventListener("click", () => {
+    mobileMenu.classList.toggle("open");
+  });
+
+  // Menü automatisch schließen beim Klick auf Link
+  document.querySelectorAll(".mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+    });
+  });
+
+}
 
 
 });
